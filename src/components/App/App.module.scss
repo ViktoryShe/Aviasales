@@ -1,0 +1,21 @@
+.app {
+  background: #f1fcff;
+  display: flex;
+  flex-direction: row; /* Изменено с column на row для горизонтального расположения */
+  justify-content: center; /* Центрируем контент */
+  padding: 50px 20px;
+  position: relative;
+
+  @media (max-width: 768px) {
+    flex-direction: column; /* Возвращаем к column для мобильных устройств */
+  }
+}
+
+.logo {
+  position: absolute;
+  top: 10px;
+  width: 80px;
+  height: 80px;
+  z-index: 1;
+}
+
