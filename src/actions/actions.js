@@ -1,0 +1,4 @@
+export const TOGGLE_FILTER = 'TOGGLE_FILTER'
+export const TOGGLE_ALL_FILTERS = 'TOGGLE_ALL_FILTERS'
+export const SET_FILTER = 'SET_FILTER'
+export const SET_SORT = 'SET_SORT'
