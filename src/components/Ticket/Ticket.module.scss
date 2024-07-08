@@ -21,32 +21,39 @@
   &-route-details {
     display: flex;
     justify-content: space-between;
-    padding-top: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 
-    &__item {
+    &__column {
+      flex: 1;
       display: flex;
       flex-direction: column;
-      flex: 1;
       margin-right: 20px;
 
       &:last-child {
         margin-right: 0;
       }
 
-      &__title {
-        color: #a0b0b9;
-        font-size: 12px;
-        font-weight: 600;
-        line-height: 18px;
-        text-transform: uppercase;
-        margin-bottom: 5px;
-      }
+      &__item {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 50px;
 
-      &__time {
-        color: #4a4a4a;
-        font-size: 14px;
-        font-weight: 500;
-        line-height: 21px;
+        &__title {
+          color: #a0b0b9;
+          font-size: 12px;
+          font-weight: 600;
+          line-height: 18px;
+          text-transform: uppercase;
+          margin-bottom: 5px;
+        }
+
+        &__time {
+          color: #4a4a4a;
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 21px;
+        }
       }
     }
   }
