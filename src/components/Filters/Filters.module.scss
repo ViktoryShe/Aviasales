@@ -31,6 +31,19 @@
       width: 20px;
       height: 20px;
       margin-right: 10px;
+      border: 1px solid #9abbce;
+      border-radius: 2px;
+      appearance: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:checked {
+        border-color: #2196f3;
+        background-image: url('../../assets/Shape.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+      }
     }
   }
 

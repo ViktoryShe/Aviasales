@@ -20,40 +20,37 @@
 
   &-route-details {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     padding-top: 10px;
     padding-bottom: 10px;
 
-    &__column {
-      flex: 1;
+    &__segment {
       display: flex;
-      flex-direction: column;
-      margin-right: 20px;
+      justify-content: space-between;
+      margin-bottom: 10px;
 
       &:last-child {
-        margin-right: 0;
+        margin-bottom: 0;
+      }
+    }
+
+    &__item {
+      display: flex;
+      flex-direction: column;
+
+      &__title {
+        color: #a0b0b9;
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 18px;
+        text-transform: uppercase;
       }
 
-      &__item {
-        display: flex;
-        flex-direction: column;
-        margin-bottom: 50px;
-
-        &__title {
-          color: #a0b0b9;
-          font-size: 12px;
-          font-weight: 600;
-          line-height: 18px;
-          text-transform: uppercase;
-          margin-bottom: 5px;
-        }
-
-        &__time {
-          color: #4a4a4a;
-          font-size: 14px;
-          font-weight: 500;
-          line-height: 21px;
-        }
+      &__time {
+        color: #4a4a4a;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 21px;
       }
     }
   }

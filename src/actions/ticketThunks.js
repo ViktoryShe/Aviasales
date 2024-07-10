@@ -1,10 +1,17 @@
-import { fetchSearchIdSuccess, fetchTicketsSuccess, fetchTicketsFailure, fetchTicketsStop } from '../actions/actions'
+import {
+  fetchSearchIdSuccess,
+  fetchTicketsSuccess,
+  fetchTicketsFailure,
+  fetchTicketsStop,
+  setLoading
+} from './actions'
 
 export const fetchTickets = (searchId, loadedTicketsCount = 0) => async (dispatch) => {
   if (loadedTicketsCount >= 5) {
     dispatch(fetchTicketsStop())
     return
   }
+  dispatch(setLoading(true))
   try {
     const response = await fetch(`https://aviasales-test-api.kata.academy/tickets?searchId=${searchId}`)
     if (!response.ok) {
@@ -20,6 +27,8 @@ export const fetchTickets = (searchId, loadedTicketsCount = 0) => async (dispatc
     }
   } catch (error) {
     dispatch(fetchTicketsFailure(error.message))
+  } finally {
+    dispatch(setLoading(false))
   }
 }
 

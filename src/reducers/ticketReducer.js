@@ -3,6 +3,7 @@ import {
   FETCH_TICKETS_SUCCESS,
   FETCH_TICKETS_FAILURE,
   FETCH_TICKETS_STOP,
+  SET_LOADING
 } from '../actions/actions'
 
 const initialState = {
@@ -11,6 +12,7 @@ const initialState = {
   error: null,
   stop: false,
   loadedTicketsCount: 0,
+  loading: false,
 }
 
 const ticketReducer = (state = initialState, action) => {
@@ -27,6 +29,8 @@ const ticketReducer = (state = initialState, action) => {
     return { ...state, error: action.payload }
   case FETCH_TICKETS_STOP:
     return { ...state, stop: true }
+  case SET_LOADING:
+    return { ...state, loading: action.payload }
   default:
     return state
   }

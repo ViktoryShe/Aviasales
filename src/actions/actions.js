@@ -6,6 +6,7 @@ export const FETCH_SEARCH_ID_SUCCESS = 'FETCH_SEARCH_ID_SUCCESS'
 export const FETCH_TICKETS_SUCCESS = 'FETCH_TICKETS_SUCCESS'
 export const FETCH_TICKETS_FAILURE = 'FETCH_TICKETS_FAILURE'
 export const FETCH_TICKETS_STOP = 'FETCH_TICKETS_STOP'
+export const SET_LOADING = 'SET_LOADING'
 
 export const fetchSearchIdSuccess = (searchId) => ({
   type: FETCH_SEARCH_ID_SUCCESS,
@@ -24,4 +25,9 @@ export const fetchTicketsFailure = (error) => ({
 
 export const fetchTicketsStop = () => ({
   type: FETCH_TICKETS_STOP,
+})
+
+export const setLoading = (loading) => ({
+  type: SET_LOADING,
+  payload: loading,
 })

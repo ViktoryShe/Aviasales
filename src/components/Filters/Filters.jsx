@@ -15,7 +15,9 @@ function Filters() {
     if (filter === 'all') {
       dispatch({ type: TOGGLE_ALL_FILTERS, payload: !filters.all })
     } else {
-      const allChecked = filters.all ? false : ['noStops', 'oneStop', 'twoStops', 'threeStops'].every((f) => f === filter ? !filters[f] : filters[f])
+      const allChecked = filters.all 
+        ? false 
+        : ['noStops', 'oneStop', 'twoStops', 'threeStops'].every((f) => f === filter ? !filters[f] : filters[f])
       dispatch({ type: SET_FILTER, payload: { filter: 'all', value: allChecked } })
     }
   }
@@ -37,15 +39,17 @@ function Filters() {
     }
   }
 
+  const renderFilterCheckbox = (filter) => (
+    <label htmlFor={filter} key={filter}>
+      <input type="checkbox" id={filter} checked={filters[filter]} onChange={() => handleToggle(filter)} />
+      {getFilterLabel(filter)}
+    </label>
+  )
+
   return (
     <div className={styles.filters}>
       <h2>КОЛИЧЕСТВО ПЕРЕСАДОК</h2>
-      {['all', 'noStops', 'oneStop', 'twoStops', 'threeStops'].map((filter) => (
-        <label htmlFor={filter} key={filter}>
-          <input type="checkbox" id={filter} checked={filters[filter]} onChange={() => handleToggle(filter)} />
-          {getFilterLabel(filter)}
-        </label>
-      ))}
+      {['all', 'noStops', 'oneStop', 'twoStops', 'threeStops'].map(renderFilterCheckbox)}
     </div>
   )
 }

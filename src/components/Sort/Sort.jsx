@@ -16,7 +16,6 @@ function Sort() {
   const buttons = [
     { type: 'cheap', label: 'САМЫЙ ДЕШЕВЫЙ' },
     { type: 'fast', label: 'САМЫЙ БЫСТРЫЙ' },
-    { type: 'optimal', label: 'ОПТИМАЛЬНЫЙ' },
   ]
 
   return (

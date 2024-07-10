@@ -1,11 +1,11 @@
 import { TOGGLE_FILTER, TOGGLE_ALL_FILTERS, SET_FILTER } from '../actions/actions'
 
 const initialState = {
-  all: false,
-  noStops: false,
-  oneStop: false,
-  twoStops: false,
-  threeStops: false,
+  all: true,
+  noStops: true,
+  oneStop: true,
+  twoStops: true,
+  threeStops: true,
 }
 
 const filtersReducer = (state = initialState, action) => {
