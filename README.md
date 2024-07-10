@@ -1,3 +1,5 @@
+Ссылка на сайт https://aviasales-viktoryshes-projects-7ec2f450.vercel.app/
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -69,11 +71,11 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-<!-- 
+<!--
 Aviasales App #1 - Верстка
 1. Изучите ТЗ по тестовому и макет
 2. Сверстайте макет, используя scss и css-modules. Макет должен приемлимо выглядеть на мобильных экранах - не разваливаться и сохранять функиональность.
-3. Пока не реализуейте никакую логику/интерактив 
+3. Пока не реализуейте никакую логику/интерактив
 
 Aviasales App #2 - Redux
 1. Установите пакеты для redux, настройте работу redux
