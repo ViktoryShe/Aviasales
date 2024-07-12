@@ -106,4 +106,14 @@ Aviasales App #4 - Завершение
 
 Количество пересадок - это точное количество пересадок в одну из сторон.
 Если по результатам фильтрации нет рейсов (например, ни одна галочка не выбрана) - должно быть сообщение "Рейсов, подходящих под заданные фильтры, не найдено"
+
+Final fixes
+1.Нужно получать все пачки билетов. Условия окончания запросов описаны в инструкции по работе с сервером.
+2.https://github.com/ViktoryShe/Aviasales/blob/main/src/components/Filters/Filters.jsx#L42C1-L47C4 https://github.com/ViktoryShe/Aviasales/blob/main/src/components/TicketList/TicketList.jsx#L37C1-L41C4 https://github.com/ViktoryShe/Aviasales/blob/main/src/components/Ticket/Ticket.jsx#L26C1-L41C4 функции обертки для создания элементов внутри компонентов не нужны, переноси логику в верстку.
+3.https://github.com/ViktoryShe/Aviasales/blob/main/src/components/Filters/Filters.jsx#L20C11-L20C59 https://github.com/ViktoryShe/Aviasales/blob/main/src/components/Filters/Filters.jsx#L52C8-L52C63 функционально это один и тот же массив, его нужно вынеси в константу. Должен быть один источник истины, при изменении которого менялся бы весь функционал, а не приходилось бы искать что ещё нужно поправить.
+4.Базовый url всегда нужно выносить в константу.
+5.https://github.com/ViktoryShe/Aviasales/blob/main/src/actions/ticketThunks.js#L22 не увидел смысла в этом счетчике.
+6.https://github.com/ViktoryShe/Aviasales/blob/main/src/actions/ticketThunks.js#L31 индикатор загрузки должен отображаться пока не загрузятся все билеты.
+7.https://github.com/ViktoryShe/Aviasales/blob/main/src/components/TicketList/TicketList.jsx#L27C1-L31C44 нужно разбить на два useMemo, так что бы при изменении сортировки не происходило перефильтрации.
+8.https://github.com/ViktoryShe/Aviasales/blob/main/src/components/Ticket/Ticket.jsx#L7C1-L23C2 вспомогательные функции должны лежать в utils.
 -->

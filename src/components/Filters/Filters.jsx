@@ -5,6 +5,8 @@ import { TOGGLE_FILTER, TOGGLE_ALL_FILTERS, SET_FILTER } from '../../actions/act
 
 import styles from './Filters.module.scss'
 
+const FILTERS = ['all', 'noStops', 'oneStop', 'twoStops', 'threeStops']
+
 function Filters() {
   const filters = useSelector((state) => state.filters)
   const dispatch = useDispatch()
@@ -17,7 +19,7 @@ function Filters() {
     } else {
       const allChecked = filters.all 
         ? false 
-        : ['noStops', 'oneStop', 'twoStops', 'threeStops'].every((f) => f === filter ? !filters[f] : filters[f])
+        : FILTERS.slice(1).every((f) => f === filter ? !filters[f] : filters[f])
       dispatch({ type: SET_FILTER, payload: { filter: 'all', value: allChecked } })
     }
   }
@@ -39,17 +41,20 @@ function Filters() {
     }
   }
 
-  const renderFilterCheckbox = (filter) => (
-    <label htmlFor={filter} key={filter}>
-      <input type="checkbox" id={filter} checked={filters[filter]} onChange={() => handleToggle(filter)} />
-      {getFilterLabel(filter)}
-    </label>
-  )
-
   return (
     <div className={styles.filters}>
       <h2>КОЛИЧЕСТВО ПЕРЕСАДОК</h2>
-      {['all', 'noStops', 'oneStop', 'twoStops', 'threeStops'].map(renderFilterCheckbox)}
+      {FILTERS.map((filter) => (
+        <label htmlFor={filter} key={filter}>
+          <input 
+            type="checkbox" 
+            id={filter} 
+            checked={filters[filter]} 
+            onChange={() => handleToggle(filter)} 
+          />
+          {getFilterLabel(filter)}
+        </label>
+      ))}
     </div>
   )
 }

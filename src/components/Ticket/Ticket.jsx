@@ -1,45 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { format, add } from 'date-fns'
+
+import { formatSegmentTime, formatDuration, formatStops } from '../../utils/ticketUtils'
 
 import styles from './Ticket.module.scss'
 
-const formatSegmentTime = (date, duration) => {
-  const departure = new Date(date)
-  const arrival = add(departure, { minutes: duration })
-  return `${format(departure, 'HH:mm')} – ${format(arrival, 'HH:mm')}`
-}
-
-const formatDuration = (duration) => {
-  const hours = Math.floor(duration / 60)
-  const minutes = duration % 60
-  return `${hours} ч ${minutes} м`
-}
-
-const formatStops = (stops) => {
-  if (stops.length === 0) return 'Без пересадок'
-  if (stops.length === 1) return '1 пересадка'
-  return `${stops.length} пересадки`
-}
-
 function Ticket({ ticket }) {
-  const renderSegments = (segment) => (
-    <div key={`${segment.origin}-${segment.destination}-${segment.date}`} className={styles['ticket-route-details__segment']}>
-      <div className={styles['ticket-route-details__item']}>
-        <div className={styles['ticket-route-details__item__title']}>{segment.origin} – {segment.destination}</div>
-        <div className={styles['ticket-route-details__item__time']}>{formatSegmentTime(segment.date, segment.duration)}</div>
-      </div>
-      <div className={styles['ticket-route-details__item']}>
-        <div className={styles['ticket-route-details__item__title']}>В пути</div>
-        <div className={styles['ticket-route-details__item__time']}>{formatDuration(segment.duration)}</div>
-      </div>
-      <div className={styles['ticket-route-details__item']}>
-        <div className={styles['ticket-route-details__item__title']}>{formatStops(segment.stops)}</div>
-        <div className={styles['ticket-route-details__item__time']}>{segment.stops.join(', ')}</div>
-      </div>
-    </div>
-  )
-
   return (
     <div className={styles.ticket}>
       <div className={styles['ticket-header']}>
@@ -49,7 +15,22 @@ function Ticket({ ticket }) {
         </div>
       </div>
       <div className={styles['ticket-route-details']}>
-        {ticket.segments.map((segment) => renderSegments(segment))}
+        {ticket.segments.map((segment) => (
+          <div key={`${segment.origin}-${segment.destination}-${segment.date}`} className={styles['ticket-route-details__segment']}>
+            <div className={styles['ticket-route-details__item']}>
+              <div className={styles['ticket-route-details__item__title']}>{segment.origin} – {segment.destination}</div>
+              <div className={styles['ticket-route-details__item__time']}>{formatSegmentTime(segment.date, segment.duration)}</div>
+            </div>
+            <div className={styles['ticket-route-details__item']}>
+              <div className={styles['ticket-route-details__item__title']}>В пути</div>
+              <div className={styles['ticket-route-details__item__time']}>{formatDuration(segment.duration)}</div>
+            </div>
+            <div className={styles['ticket-route-details__item']}>
+              <div className={styles['ticket-route-details__item__title']}>{formatStops(segment.stops)}</div>
+              <div className={styles['ticket-route-details__item__time']}>{segment.stops.join(', ')}</div>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   )

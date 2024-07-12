@@ -24,21 +24,13 @@ function TicketList() {
     dispatch(fetchSearchId())
   }, [dispatch])
 
-  const memoizedTickets = useMemo(() => {
-    const filtered = filterTickets(tickets, filters)
-    const sorted = sortTickets(filtered, sort)
-    return sorted.slice(0, ticketCount)
-  }, [tickets, ticketCount, filters, sort])
+  const filteredTickets = useMemo(() => filterTickets(tickets, filters), [tickets, filters])
+
+  const sortedTickets = useMemo(() => sortTickets(filteredTickets, sort).slice(0, ticketCount), [filteredTickets, sort, ticketCount])
 
   const handleShowMore = useCallback(() => {
     setTicketCount((prevCount) => prevCount + 5)
   }, [])
-
-  const renderTickets = () => (
-    memoizedTickets.map((ticket) => (
-      <Ticket key={`${ticket.price}-${ticket.carrier}-${ticket.segments[0].date}`} ticket={ticket} />
-    ))
-  )
 
   return (
     <div className={styles.ticketList}>
@@ -51,8 +43,10 @@ function TicketList() {
           showIcon 
         />
       )}
-      {memoizedTickets.length > 0 ? (
-        renderTickets()
+      {sortedTickets.length > 0 ? (
+        sortedTickets.map((ticket) => (
+          <Ticket key={`${ticket.price}-${ticket.carrier}-${ticket.segments[0].date}`} ticket={ticket} />
+        ))
       ) : (
         !loading && !error && (
           <div className={styles.noTicketsMessage}>
@@ -60,7 +54,7 @@ function TicketList() {
           </div>
         )
       )}
-      {stop && memoizedTickets.length > 0 && (
+      {stop && sortedTickets.length > 0 && (
         <button
           type="button"
           onClick={handleShowMore}

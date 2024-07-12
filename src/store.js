@@ -12,14 +12,16 @@ const rootReducer = {
   tickets: ticketReducer,
 }
 
+const isDevelopment = process.env.NODE_ENV !== 'production'
+
 const store = configureStore({
   reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
-      immutableCheck: process.env.NODE_ENV !== 'production',
-      serializableCheck: process.env.NODE_ENV !== 'production',
+      immutableCheck: isDevelopment,
+      serializableCheck: isDevelopment,
     }),
-  devTools: process.env.NODE_ENV !== 'production',
+  devTools: isDevelopment,
 })
 
 export default store
