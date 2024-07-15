@@ -7,14 +7,17 @@ import {
 } from './actions'
 
 const BASE_URL = 'https://aviasales-test-api.kata.academy'
-const MAX_RETRIES = 3
 
-export const fetchTickets = (searchId, retries = 0) => async (dispatch) => {
+export const fetchTickets = (searchId) => async (dispatch) => {
   dispatch(setLoading(true))
 
-  const fetchAllTickets = async (id, retryCount) => {
+  const fetchAllTickets = async (id) => {
     try {
       const response = await fetch(`${BASE_URL}/tickets?searchId=${id}`)
+      if (!response.ok && response.status >= 500) {
+        await fetchAllTickets(id)
+        return
+      }
       const data = await response.json()
       dispatch(fetchTicketsSuccess(data.tickets))
 
@@ -22,19 +25,15 @@ export const fetchTickets = (searchId, retries = 0) => async (dispatch) => {
         dispatch(fetchTicketsStop())
         dispatch(setLoading(false))
       } else {
-        await fetchAllTickets(id, 0)
+        await fetchAllTickets(id)
       }
     } catch (error) {
-      if (retryCount < MAX_RETRIES) {
-        await fetchAllTickets(id, retryCount + 1)
-      } else {
-        dispatch(fetchTicketsFailure(error.message))
-        dispatch(setLoading(false))
-      }
+      dispatch(fetchTicketsFailure(error.message))
+      dispatch(setLoading(false))
     }
   }
 
-  await fetchAllTickets(searchId, retries)
+  await fetchAllTickets(searchId)
 }
 
 export const fetchSearchId = () => async (dispatch) => {

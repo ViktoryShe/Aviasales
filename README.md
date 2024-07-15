@@ -116,4 +116,6 @@ Final fixes
 6.https://github.com/ViktoryShe/Aviasales/blob/main/src/actions/ticketThunks.js#L31 индикатор загрузки должен отображаться пока не загрузятся все билеты.
 7.https://github.com/ViktoryShe/Aviasales/blob/main/src/components/TicketList/TicketList.jsx#L27C1-L31C44 нужно разбить на два useMemo, так что бы при изменении сортировки не происходило перефильтрации.
 8.https://github.com/ViktoryShe/Aviasales/blob/main/src/components/Ticket/Ticket.jsx#L7C1-L23C2 вспомогательные функции должны лежать в utils.
+9. https://github.com/ViktoryShe/Aviasales/blob/main/src/actions/ticketThunks.js#L28C6-L28C38 в ТЗ нет никаких условий по количеству ошибок. По заданию ошибки сервера должны игнорироваться, а все остальные ошибки должны обрабатываться в обычном порядке.
+Соответственно и проверка статусов запросов нужна.
 -->
